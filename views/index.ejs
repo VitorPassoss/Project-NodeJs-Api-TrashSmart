@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title></title>
+    <link rel='stylesheet' href='/stylesheets/style.css' />
+  </head>
+  <body>
+    
+  </body>
+
+    <script>
+
+    var getBarcodeScanner = require('lightning');
+    
+    function handleBeginScanClick(e) {
+    const myScanner = getBarcodeScanner();
+    if(myScanner.isAvailable()) {
+        // Perform scanning operations
+        myScanner.beginCapture(scanningOptions)
+    .then((result) => {
+        // Do something with the result of the scan
+        console.log(result);
+        this.scannedBarcode = result.value;
+    })
+    .catch((error) => {
+        // Handle cancellation and scanning errors here
+        console.error(error);
+    })
+    .finally(() => {
+        myScanner.endCapture();
+    });
+        alert("eba")
+    }
+    else {
+        // Scanner not available
+        // Not running on hardware with a scanner
+        // Handle with message, error, beep, and so on
+    }
+}
+
+  </script>
+</html>
